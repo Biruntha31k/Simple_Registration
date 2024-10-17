@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Student Details Form</h1>
+    <form id="studentForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Name" autocomplete="off" required>
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" placeholder="Age" required>
+        
+        <label for="gender">Gender:</label>
+        <select id="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="course">Course:</label>
+        <input type="text" id="course" placeholder="Course" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" placeholder="someone@web.com" required>
+
+        <button type="button" id="saveBtn">Save</button>
+    </form>
+
+    <h2>Student List</h2>
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Course</th>
+                <th>E-mail</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamic rows will be added here -->
+        </tbody>
+    </table>
+
+    <script src="./script.js"></script>
+</body>
+</html>
