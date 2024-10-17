@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      background-image: url('https://img.freepik.com/premium-photo/elegant-flower-with-watercolor-style-background-invitation-wedding-card-ai-generated-image_548729-1418.jpg');
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.8em;
+      text-align: left;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background-color: #cccccc;
+    }
+
+    .welcome-message {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+
+    .back-btn {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container" id="registrationForm">
+    <h2>Register</h2>
+    <form id="form">
+      <input type="text" id="name" placeholder="Name" autocomplete="off">
+      <div class="error" id="nameError"></div>
+
+      <input type="email" id="email" placeholder="Email" autocomplete="off">
+      <div class="error" id="emailError"></div>
+
+      <input type="password" id="password" placeholder="Password" autocomplete="off">
+      <div class="error" id="passwordError"></div>
+
+      <button type="submit" id="submitBtn" disabled>Submit</button>
+    </form>
+  </div>
+
+  <div class="container" id="welcomeMessage" style="display: none;">
+    <div class="welcome-message">Welcome Back!!</div>
+    <button class="back-btn" onclick="backToForm()">Back</button>
+  </div>
+
+  <script>
+    const form = document.getElementById('form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const submitBtn = document.getElementById('submitBtn');
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const registrationForm = document.getElementById('registrationForm');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+
+    function validateName() {
+      if (nameInput.value.trim() === '') {
+        nameError.textContent = 'Name cannot be empty';
+        return false;
+      } else {
+        nameError.textContent = '';
+        return true;
+      }
+    }
+
+    function validateEmail() {
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/;
+      if (!emailPattern.test(emailInput.value.trim())) {
+        emailError.textContent = 'Invalid email format';
+        return false;
+      } else {
+        emailError.textContent = '';
+        return true;
+      }
+    }
+
+    function validatePassword() {
+      if (passwordInput.value.length < 6) {
+        passwordError.textContent = 'Password must be at least 6 characters';
+        return false;
+      } else {
+        passwordError.textContent = '';
+        return true;
+      }
+    }
+
+    function enableSubmitButton() {
+      if (validateName() && validateEmail() && validatePassword()) {
+        submitBtn.disabled = false;
+      } else {
+        submitBtn.disabled = true;
+      }
+    }
+
+    nameInput.addEventListener('input', () => {
+      validateName();
+      enableSubmitButton();
+    });
+
+    emailInput.addEventListener('input', () => {
+      validateEmail();
+      enableSubmitButton();
+    });
+
+    passwordInput.addEventListener('input', () => {
+      validatePassword();
+      enableSubmitButton();
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      registrationForm.style.display = 'none';
+      welcomeMessage.style.display = 'block';
+    });
+
+    function backToForm() {
+      registrationForm.style.display = 'block';
+      welcomeMessage.style.display = 'none';
+      form.reset();
+      submitBtn.disabled = true;
+    }
+  </script>
+
+</body>
+
+</html>
